@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
+
+<div th:fragment="productTable">
+
+			<form th:action="@{/productClone/search}" method="get">
+			<div class="d-flex justify-content-center row " style="padding:15px">
+				<input type="text" name="searchTerm" th:value="${searchTerm}" placeholder="Enter <id/rank/name/team/bye/points/anything else>:<search value>" size="100"/>
+					<button type="submit" class="btn btn-info">Search</button>
+					<button type="submit" class="btn btn-info">Reset</button>
+			</div>
+			</form>
+
+    			<div class="d-flex justify-content-center row">
+       				<div class="col-md-20">
+            			<div class="rounded">
+                			<div class="table-responsive table-borderless">
+        	<!-- Original Table Content -->
+								<table id="table_id" class="display" style="width:100%" >
+									<thead style="background: #dddcdc">
+										<tr>
+											<th class="text-center">
+												<div class="toggle-btn">
+													<div class="inner-circle"></div>
+												</div>
+											</th>
+											<th style="text-align:center; color:black;">RB ID |</th>
+											<th style="text-align:center; color:black;">Rank |</th>
+											<th style="text-align:center; color:black;">Name |</th>
+											<th style="text-align:center; color:black;">Team |</th>
+											<th style="text-align:center; color:black;">Bye |</th>											
+											<th style="text-align:center; color:black;">Points |</th>
+											<th style="text-align:center; color:black;">Attempts |</th>
+											<th style="text-align:center; color:black;">Rush Yards |</th>
+											<th style="text-align:center; color:black;">Rush TDs |</th>
+											<th style="text-align:center; color:black;">Receptions |</th>
+											<th style="text-align:center; color:black;">Rec Yards |</th>
+											<th style="text-align:center; color:black;">Rec TDs |</th>
+											<th style="text-align:center; color:black;">First Downs |</th>
+											<th style="text-align:center; color:black;">100-199 Game |</th>
+											<th style="text-align:center; color:black;">200+ Game |</th>
+											<th style="text-align:center; color:black;">40+ Rush |</th>
+											<th style="text-align:center; color:black;">40+ Yard TD |</th>
+											<th style="text-align:center; color:black;">Pass Completed |</th>
+											<th style="text-align:center; color:black;">Pass Yards |</th>
+											<th style="text-align:center; color:black;">Pass TDs |</th>
+											<th style="text-align:center; color:black;">Fum |</th>
+											<th style="text-align:center; color:black;">Fum Lost |</th>
+											<th style="text-align:center; color:black;">Target Share |</th>
+											<th style="text-align:center; color:black;">Pts/Game</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody class="table-body">
+										<!-- <tr class="cell-1" th:if="${products.empty}">
+											<td style="text-align:center" colspan="4">No Orders Available</td>
+										</tr> -->
+										<tr class="cell-1"  th:each="runningback:${runningbacks}">
+											<td class="text-center">
+												<div class="toggle-btn">
+													<div class="inner-circle"></div>
+												</div>
+											</td>
+											<td style="text-align:center"><h5 th:text="${runningback.rbId}">1</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.rank}">1</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.name}">Jonathan Taylor</h5></td>											
+											<td style="text-align:center"><h5 th:text="${runningback.team}">IND</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.byeWeek}">14</h5></td>											
+											<td style="text-align:center"><span class="badge" style="color:black" th:text="${runningback.points}">387.65</span></td>
+											<td style="text-align:center"><h5 th:text="${runningback.rushAttempts}">285</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.rushYards}">1813</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.rushTds}">18</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.receptions}">65</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.recYards}">435</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.recTds}">3</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.firstDowns}">43</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.hundredYardGame}">2</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.twoHundredYardGame}">0</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.fourtyYardPlay}">1</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.fourtyYardTds}">1</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.passCompleted}">0</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.passYards}">0</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.passTds}">0</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.fumbles}">6</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.fumblesLost}">3</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.targetShare}">21.2</h5></td>
+											<td style="text-align:center"><h5 th:text="${runningback.pointsGame}">19.21</h5></td>
+										</tr>
+									</tbody>
+								</table>
+		<!-- Original Table Content -->
+							</div>
+            			</div>
+        			</div>
+    			</div>
+			
+
+</div>

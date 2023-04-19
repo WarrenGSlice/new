@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<script>
+function ConfirmAdd() {
+    return confirm('Are you sure you want to create this order?');
+};
+</script>
+
+	<div th:fragment="addOrder">
+		
+		<div class="tab-content">
+        	<div id="itemDetailsTab" class="container-fluid tab-pane active">
+
+        		<br>
+        		<form th:action="@{/productClone/addOrder}" th:object="${rbEntity}" method="post">
+        			<div class="form-row">
+        				<!-- <div class="form-group col-md-3" style="display:inline-block">
+        					<label for="itemDetailsOrderNumber">Order Number<span class="requiredIcon">*</span></label>
+        					<input type="text" th:value="${orderId}" th:field="*{orderId}" class="form-control" name="orderId" id="orderId" autocomplete="off">
+        					<div class="customListDivWidth" id="itemDetailsOrderIdSuggestionDiv"></div>
+        				</div> -->
+        				<div class="form-group col-md-2" style="display:inline-block">
+        					<label for="itemDetailsRank">Rank</label>
+        					<input type="text" class="form-control" th:value="${rank}" th:field="*{rank}" name="rank" id="rank" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2" style="display:inline-block">
+        					<label for="itemDetailsName">Player Name</label>
+        					<input type="text"  th:value="${name}" th:field="*{name}" class="form-control" name="name" id="name" autocomplete="off" >
+        					<div class="customListDivWidth" id="itemDetailsOrderSuggestionDiv"></div>
+        				</div>
+        				<div class="form-group col-md-2" style="display:inline-block">
+        					<label for="itemDetailsTeam">Team Name</label>
+        					<input type="text"  th:value="${team}" th:field="*{team}" class="form-control" name="team" id="team" autocomplete="off">
+        					<div class="customListDivWidth" id="itemDetailsCustomerSuggestionDiv"></div>
+        				</div>      			
+        				<div class="form-group col-md-2" style="display:inline-block">
+        					<label for="itemDetailsByeWeek">Bye Week</label>
+        					<input type="text" class="form-control" th:value="${byeWeek}" th:field="*{byeWeek}" name="byeWeek" id="byeWeek" autocomplete="off">
+        				</div>
+        				<!--  <div class="form-group col-md-2">
+        					<label for="itemDetailsPoints">Total Points</label>
+        					<input type="text" class="form-control" name="points" th:value="${points}" th:field="*{points}" id="points" autocomplete="off">
+        				</div>   -->     				
+        			</div>
+        			<div class="form-row">
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsRushAttempts">Rush Attempts</label>
+        					<input type="text" class="form-control" name="rushAttempts" id="rushAttempts" th:value="${rushAttempts}" th:field="*{rushAttempts}"  autocomplete="off">
+        				</div> 				
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsRushYards">Rush Yards</label>
+        					<input type="text" class="form-control" name="rushYards"  th:value="${rushYards}" th:field="*{rushYards}" id="rushYards" autocomplete="off">
+        				</div>     				
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsRushTds">Rush TDs</label>
+        					<input type="text" class="form-control" name="rushTds"  th:value="${rushTds}" th:field="*{rushTds}" id="rushTds" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsReceptions">Receptions</label>
+        					<input type="text" class="form-control" name="receptions"  th:value="${receptions}" th:field="*{receptions}" id="receptions" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsRecYards">Rec Yards</label>
+        					<input type="text" class="form-control" name="recYards"  th:value="${recYards}" th:field="*{recYards}" id="recYards" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsRecTds">Rec Tds</label>
+        					<input type="text" class="form-control" name="recTds"  th:value="${recTds}" th:field="*{recTds}" id="recTds" autocomplete="off">
+        				</div>  
+        			</div>
+        			<div class="form-row">
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsFirstDowns">First Downs</label>
+        					<input type="text" class="form-control" name="firstDowns"  th:value="${firstDowns}" th:field="*{firstDowns}" id="firstDowns" autocomplete="off">
+        				</div>  
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsHundredYardGame">100-199 Yard Games</label>
+        					<input type="text" class="form-control" name="hundredYardGame"  th:value="${hundredYardGame}" th:field="*{hundredYardGame}" id="hundredYardGame" autocomplete="off">
+        				</div> 
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsTwoHundredYardGame">200+ Yard Games</label>
+        					<input type="text" class="form-control" name="twoHundredYardGame"  th:value="${twoHundredYardGame}" th:field="*{twoHundredYardGame}" id="twoHundredYardGame" autocomplete="off">
+        				</div> 
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsFourtyYardPlay">40+ Yard Plays</label>
+        					<input type="text" class="form-control" name="fourtyYardPlay"  th:value="${fourtyYardPlay}" th:field="*{fourtyYardPlay}" id="fourtyYardPlay" autocomplete="off">
+        				</div> 
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsFourtyYardTds">40+ Yard Tds</label>
+        					<input type="text" class="form-control" name="fourtyYardTds"  th:value="${fourtyYardTds}" th:field="*{fourtyYardTds}" id="fourtyYardTds" autocomplete="off">
+        				</div> 
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsPassCompleted">Passing Completions</label>
+        					<input type="text" class="form-control" name="passCompleted"  th:value="${passCompleted}" th:field="*{passCompleted}" id="passCompleted" autocomplete="off">
+        				</div>       				
+        			</div>
+        			<div class="form-row">
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsPassYards">Passing Yards</label>
+        					<input type="text" class="form-control" name="passYards"  th:value="${passYards}" th:field="*{passYards}" id="passYards" autocomplete="off">
+        				</div> 
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsPassTds">Passing TDs</label>
+        					<input type="text" class="form-control" name="passTds"  th:value="${passTds}" th:field="*{passTds}" id="passTds" autocomplete="off">
+        				</div>   				
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsFumbles">Fumbles</label>
+        					<input type="text" class="form-control" name="fumbles"  th:value="${fumbles}" th:field="*{fumbles}" id="fumbles" autocomplete="off">
+        				</div>     				
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsFumblesLost">Fumbles Lost</label>
+        					<input type="text" class="form-control" name="fumblesLost"  th:value="${fumblesLost}" th:field="*{fumblesLost}" id="fumblesLost" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsTargetShare">Target Share</label>
+        					<input type="text" class="form-control" name="targetShare"  th:value="${targetShare}" th:field="*{targetShare}" id="targetShare" autocomplete="off">
+        				</div>
+        				<div class="form-group col-md-2">
+        					<label for="itemDetailsPointsGame">Points/Game</label>
+        					<input type="text" class="form-control" name="pointsGame"  th:value="${pointsGame}" th:field="*{pointsGame}" id="pointsGame" autocomplete="off">
+        				</div>
+        			</div>
+
+						<input type="submit" onclick='return ConfirmAdd()' value="Add Player" class="btn btn-success">			
+        		<!--  	<button onclick="window.location.href='/productClone/'" type="button" id="addItem" class="btn btn-success" >Add Item</button> -->
+
+        		</form>
+        		
+       		</div>
+        		
+        </div>
+	
+	</div>

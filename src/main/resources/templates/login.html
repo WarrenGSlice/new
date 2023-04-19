@@ -1,0 +1,73 @@
+<!-- CST-339 CLC Milestone Project
+	Order Management Application
+	Created by Warren Peterson,
+	Jonathan Levan, Ivan Gudino -->
+
+<!-- Login Page -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="https://thymeleaf.org/thymeleaf-extras-springsecurity5" >
+<!-- Head Section Insert -->
+	<head th:replace="layouts/head-section :: head-section">
+	<title>Login Form</title>
+	</head>
+	
+	<body>
+	
+	<!-- Navbar link -->
+	<div th:replace="layouts/navbar :: navbar"></div>
+	
+	<!-- Main Page Content -->
+	<div class="signupform">
+	<div class="container">
+		<!-- main content -->
+		<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+		<div class="agile_info">
+			<div class="w3l_form">
+				<div class="left_grid_info">
+					<h1>Manage Your Business Account</h1>
+					<p>Thank you for using our order management solution</p>
+					<img th:src="@{/images/image.jpg}" alt="" />
+				</div>
+			</div>
+			<div class="w3_info">
+				<h2>Login to your Account</h2>
+				<p>Enter your details to login.</p>
+				<div style="color:red" th:if="${param.error}">
+					Invalid User Name or Password
+				</div>
+				
+				<form th:action="@{/login}" th:object="${login}"   method="post">
+					<label style="color:white">User Name</label>
+					<div class="input-group">
+						<span class="fa fa-envelope" aria-hidden="true"></span>
+						<input  type="text" name="username" id="username" th:field="${login.username}" placeholder="Enter UserName" class="form-control w3-hover-shadow w3-border w3-hover-border-red" required> 
+					</div>
+					
+					<label style="color:white">Password</label>
+					<div class="input-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<input type="password" name="password" id="password" th:field="${login.password}" class="w3-hover-shadow w3-border w3-hover-border-red" placeholder="Enter Password" required>
+					</div> 
+
+					<div class="login-check">
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+					</div>						
+						<button style="font-weight:bold" class="btn btn-danger btn-block w3-hover-green" value="Sign In" type="submit">Log In</button >    
+				</form>
+				<p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+				<p class="account1">Dont have an account? <a href="/register/">Register here</a></p>
+			</div>
+		</div>
+		<!-- //main content -->
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<p>&copy; 2019 Business login form. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="blank">Ivan, Jonathan & Warren</a></p>
+	</div>
+	<!-- footer -->
+	<div th:replace="layouts/footer :: footer"></div>
+</div>
+</body>
+</html>	
+
+

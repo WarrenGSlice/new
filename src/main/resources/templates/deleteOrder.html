@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+<div th:fragment="deleteOrder">
+
+    <div class="d-flex justify-content-center row">
+       	<div class="col-md-20">
+            <div class="rounded">
+       			<div class="table-responsive table-borderless">
+        	<!-- Original Table Content -->
+					<table id="table_id" class="display" style="width:100%" >
+						<thead style="background: #dddcdc">
+							<tr>
+								<th class="text-center">
+									<div class="toggle-btn">
+										<div class="inner-circle"></div>
+									</div>
+								</th>
+								<th style="text-align:center; color:black;">RB ID</th>
+								<th style="text-align:center; color:black;">Rank</th>
+								<th style="text-align:center; color:black;">Player Name</th>
+								<th style="text-align:center; color:black;">Team</th>
+								<th style="text-align:center; color:black;">Bye</th>											
+								<th style="text-align:center; color:black;">Total Points</th>
+								<th style="text-align:center; color:black;">Rush Attempts</th>
+								<th style="text-align:center; color:black;">Rush Yards</th>
+								<th style="text-align:center; color:black;">Rush TDs</th>
+								<th style="text-align:center; color:black;">Receptions</th>
+								<th style="text-align:center; color:black;">Rec Yards</th>
+								<th style="text-align:center; color:black;">Rec TDs</th>
+								<th style="text-align:center; color:black;">First Downs</th>
+								<th style="text-align:center; color:black;">First Downs</th>
+								<th style="text-align:center; color:black;">100-199 Yard Game</th>
+								<th style="text-align:center; color:black;">200+ Yard Game</th>
+								<th style="text-align:center; color:black;">40+ Yard Play</th>
+								<th style="text-align:center; color:black;">40+ Yard TDs</th>
+								<th style="text-align:center; color:black;">Passes Completed</th>
+								<th style="text-align:center; color:black;">Passing Yards</th>
+								<th style="text-align:center; color:black;">Passing TDs</th>
+								<th style="text-align:center; color:black;">Fumbles</th>
+								<th style="text-align:center; color:black;">Fum Lost</th>
+								<th style="text-align:center; color:black;">Target Share</th>
+								<th style="text-align:center; color:black;">Pts/Game</th>
+								<th style="text-align:center; color:black;">Delete</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody class="table-body">
+							<!-- <tr class="cell-1" th:if="${products.empty}">
+								<td style="text-align:center" colspan="4">No Orders Available</td>
+							</tr> -->
+							<tr class="cell-1"  th:each="runningback:${runningbacks}">
+								<td class="text-center">
+									<div class="toggle-btn">
+										<div class="inner-circle"></div>
+									</div>
+								</td>
+								<td style="text-align:center"><h5 th:text="${runningback.rbId}">1</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.rank}">1</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.name}">Jonathan Taylor</h5></td>											
+								<td style="text-align:center"><h5 th:text="${runningback.team}">IND</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.byeWeek}">14</h5></td>											
+								<td style="text-align:center"><span class="badge" style="color:black" th:text="${runningback.points}">387.65</span></td>
+								<td style="text-align:center"><h5 th:text="${runningback.rushAttempts}">285</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.rushYards}">1813</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.rushTds}">18</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.receptions}">65</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.recYards}">435</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.recTds}">3</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.firstDowns}">43</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.hundredYardGame}">2</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.twoHundredYardGame}">0</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.fourtyYardPlay}">1</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.fourtyYardTds}">1</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.passCompleted}">0</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.passYards}">0</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.passTds}">0</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.fumbles}">6</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.fumblesLost}">3</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.targetShare}">21.2</h5></td>
+								<td style="text-align:center"><h5 th:text="${runningback.pointsGame}">19.21</h5></td>
+								<td style="text-align:center"><a class="btn btn-link"onmouseover="this.style.backgroundColor='#006db9'" onmouseout="this.style.backgroundColor=''" 
+									style=" color:black"  th:href="@{/productClone/removeOrder/} + ${runningback.rbId}">Delete <i class="fa fa-remove"
+									onmouseover="this.style.color='green'; this.style.backgroundColor='white'"  
+									onmouseout="this.style.color='red'; this.style.backgroundColor='white'" style="color:red"> </i></a></td>
+							</tr>
+						</tbody>
+					</table>
+		<!-- Original Table Content -->
+				</div>
+   			</div>
+        </div>
+   	</div>
+
+</div>
