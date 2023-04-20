@@ -53,7 +53,12 @@ public class PlayerController {
         model.addAttribute("title", "Product Form");
         model.addAttribute("user", new Login().getUsername());
         model.addAttribute("runningback", new RBModel());
+        
+        logger.info("Exiting PlayerController.displayProducts()");
+        
         return "productClone";
+        
+        
     }
 	
 	
